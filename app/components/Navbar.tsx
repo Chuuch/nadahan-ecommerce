@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ShoppingCart } from "lucide-react";
 import { useShoppingCart } from "use-shopping-cart";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { name: "НАЧАЛО", href: "/" },
@@ -59,6 +60,7 @@ export default function Navbar() {
               Кошница
             </span>
           </Button>
+          <ThemeToggle />
         </div>
       </div>
     </header>

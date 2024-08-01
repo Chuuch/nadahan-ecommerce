@@ -4,8 +4,10 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import CartProvider from "./components/Providers";
 import ShoppingCartModal from "./components/ShoppingCartModal";
+import { ThemeProvider } from "./components/ThemeProvider";
+import Footer from "./components/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "НАДЪХАН",
@@ -14,17 +16,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <CartProvider>
-          <Navbar />
-          <ShoppingCartModal />
-          {children}
-        </CartProvider>
+    <html lang="en" suppressHydrationWarning>
+      <head />
+      <body className={font.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          storageKey="ecommerce-theme"
+        >
+          <CartProvider>
+            <Navbar />
+            <ShoppingCartModal />
+            {children}
+            <Footer />
+          </CartProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
